@@ -1,0 +1,35 @@
+// ===== BOTÕES DE CURTIR E JOINHA =====
+const botoes = document.querySelectorAll("article button:not(.btn-tema-escuro)");
+
+botoes.forEach(function (botao) {
+    let curtiu = false;
+    botao.addEventListener("click", botaoClicado);
+
+    function botaoClicado() {
+        let texto = botao.querySelector("span");
+        if (curtiu === false) {
+            texto.textContent = parseInt(texto.textContent) + 1;
+            curtiu = true;
+        } else {
+            texto.textContent = parseInt(texto.textContent) - 1;
+            curtiu = false;
+        }
+    }
+});
+
+// ===== BOTÃO DE MODO ESCURO =====
+const btnTemaEscuro = document.querySelector(".btn-tema-escuro");
+
+btnTemaEscuro.addEventListener("click", mudaTema);
+
+function mudaTema() {
+    const corpoPagina = document.body;
+
+    if (corpoPagina.classList.contains("tema-escuro")) {
+        corpoPagina.classList.remove("tema-escuro");
+        btnTemaEscuro.textContent = "🌙";
+    } else {
+        corpoPagina.classList.add("tema-escuro");
+        btnTemaEscuro.textContent = "☀️";
+    }
+}
